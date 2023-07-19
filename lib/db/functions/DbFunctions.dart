@@ -1,8 +1,12 @@
+import 'package:flutter/material.dart';
+
 import '../model/dataModel.dart';
 
-List<StudentModel> studentList = [];
+ValueNotifier<List<StudentModel>> studentListNotifier = ValueNotifier([]);
 //fucntion for button clicking
 
 void addStudent(StudentModel value) {
-  studentList.add(value);
+  studentListNotifier.value.add(value);
+  // ignore: invalid_use_of_protected_member
+  studentListNotifier.notifyListeners();
 }

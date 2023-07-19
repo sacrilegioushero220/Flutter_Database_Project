@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../db/functions/DbFunctions.dart';
+import '../db/model/dataModel.dart';
+
 class AddStudentWidget extends StatelessWidget {
   AddStudentWidget({super.key});
   final _nameController = TextEditingController();
   final _ageController = TextEditingController();
-
-  onAddStudentButtonClicked() {
-    final name = _nameController.text.trim();
-    final age = _ageController.text.trim();
-    if (name.isEmpty || age.isEmpty) {
-      return;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +30,24 @@ class AddStudentWidget extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         ElevatedButton.icon(
-            onPressed: onAddStudentButtonClicked(),
+            onPressed: () {
+              return onAddStudentButtonClicked();
+            },
             icon: const Icon(Icons.add),
             label: const Text('Add Student'))
       ]),
     );
+  }
+
+  onAddStudentButtonClicked() {
+    final name = _nameController.text.trim();
+    final age = _ageController.text.trim();
+    if (name.isEmpty || age.isEmpty) {
+      return;
+    }
+    print('Name: $name, Age: $age');
+    final student = StudentModel(name: name, age: age);
+
+    addStudent(student);
   }
 }
