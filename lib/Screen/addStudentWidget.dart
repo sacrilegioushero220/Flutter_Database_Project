@@ -1,25 +1,5 @@
 import 'package:flutter/material.dart';
 
-class ScreenHome extends StatelessWidget {
-  const ScreenHome({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hive Demo Project'),
-        elevation: 2,
-      ),
-      body: Column(
-        children: [
-          AddStudentWidget(),
-          const Expanded(child: ListStudentNames())
-        ],
-      ),
-    );
-  }
-}
-
 class AddStudentWidget extends StatelessWidget {
   AddStudentWidget({super.key});
   final _nameController = TextEditingController();
@@ -60,24 +40,5 @@ class AddStudentWidget extends StatelessWidget {
             label: const Text('Add Student'))
       ]),
     );
-  }
-}
-
-class ListStudentNames extends StatelessWidget {
-  const ListStudentNames({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-        itemBuilder: (ctx, index) {
-          return ListTile(
-            title: Text('Student Name $index'),
-            subtitle: Text('Student Age $index'),
-          );
-        },
-        separatorBuilder: (ctx, index) {
-          return const Divider();
-        },
-        itemCount: 50);
   }
 }
